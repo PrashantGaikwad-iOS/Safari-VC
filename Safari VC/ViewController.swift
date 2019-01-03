@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class ViewController: UIViewController {
 
@@ -14,7 +15,22 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
-
+    
+    // MARK: - IBActions
+    
+    @IBAction func openLinkInSafari(_ sender: Any) {
+        showSafariVC(for: "https://www.youtube.com/watch?v=gnjXbR2eNDE")
+    }
+    
+    func showSafariVC(for url: String) {
+        guard let url = URL(string: url) else {
+            // Show an invalid URL error
+            return
+        }
+        
+        let safariVC = SFSafariViewController(url: url)
+        present(safariVC, animated: true)
+    }
 
 }
 
